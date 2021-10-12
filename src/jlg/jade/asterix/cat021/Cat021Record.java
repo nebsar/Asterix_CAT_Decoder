@@ -76,6 +76,7 @@ public class Cat021Record extends FspecAsterixData {
 
     @Override
     protected int decodeFromByteArray(byte[] input, int offset, int length) {
+         
         if (fspecDataAtIndex(FSPEC.I021_010)) {
             this.cat21Item010 = new Cat021Item010();
             offset = cat21Item010.decode(input, offset, length);

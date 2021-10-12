@@ -16,17 +16,20 @@ public class JadeApplication {
     public static void main(String[] args) {
         System.out.println("Java Asterix Decoder Encoder");
         BlockingQueue<byte[]> rawQueue = new ArrayBlockingQueue<>(4000);
-        String mode = args[0];
+
+        String[] args1 = {"udp", "true", "3001", "21, 48"};
+        String mode = args1[0];
+
         if (!mode.equals("udp") && !mode.equals("file")) {
             throw new RuntimeException("Invalid mode. First parameter must be udp or file.");
         }
         switch (mode) {
             case "udp": {
-                ParseUdpUnicastData(rawQueue, args);
+                ParseUdpUnicastData(rawQueue, args1);
                 break;
             }
             case "file": {
-                ParseFileData(rawQueue, args);
+                ParseFileData(rawQueue, args1);
                 break;
             }
             default: {

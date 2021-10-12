@@ -3,7 +3,7 @@
 * This code is the property of JLG Consulting. Please
 * check the license terms for this product to see under what
 * conditions you can use or modify this source code.
-*/
+ */
 package jlg.jade.example;
 
 import jlg.jade.asterix.AsterixDataBlock;
@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 class DatagramConvertor implements Runnable {
+
     private final BlockingQueue<byte[]> rawQueue;
     private boolean isLogEnabled = false;
     private int numberOfQueueItems;
@@ -33,11 +34,13 @@ class DatagramConvertor implements Runnable {
         //initialise item counters
         DefaultDecodingReport asterixDecodingReport = new DefaultDecodingReport();
 
-
         System.out.println("Start Datagram Convertor");
 
         //init asterix decoder
         List<Integer> categoriesToDecode = new ArrayList<>();
+        if (allowedCategories.contains("21")) {
+            categoriesToDecode.add(21);
+        }
         if (allowedCategories.contains("62")) {
             categoriesToDecode.add(62);
         }
@@ -47,13 +50,13 @@ class DatagramConvertor implements Runnable {
         if (allowedCategories.contains("4")) {
             categoriesToDecode.add(4);
         }
-        if(allowedCategories.contains("150")){
+        if (allowedCategories.contains("150")) {
             categoriesToDecode.add(150);
         }
-        if(allowedCategories.contains("48")){
+        if (allowedCategories.contains("48")) {
             categoriesToDecode.add(48);
         }
-        if(allowedCategories.contains("34")){
+        if (allowedCategories.contains("34")) {
             categoriesToDecode.add(34);
         }
 
@@ -79,17 +82,17 @@ class DatagramConvertor implements Runnable {
                             asterixDecodingReport.update(adb);
 
                             //item counters are printed every 100 data blocks
-                            if(index % 100 == 0) {
+                            if (index % 100 == 0) {
                             }
                         }
                         index++;
                     }
-                    System.out.println("Processed " +
-                            numberOfQueueItems + " datagrams/packets (" +
-                            numberOfReceivedBytes +
-                            ") bytes (" + numberOfReceivedBytesFinalFrame + ") received bytes in " +
-                            "FF. Elapsed time " +
-                            (System.currentTimeMillis() - startTime) / 1000 + " sec");
+                    System.out.println("Processed "
+                            + numberOfQueueItems + " datagrams/packets ("
+                            + numberOfReceivedBytes
+                            + ") bytes (" + numberOfReceivedBytesFinalFrame + ") received bytes in "
+                            + "FF. Elapsed time "
+                            + (System.currentTimeMillis() - startTime) / 1000 + " sec");
 
                 } catch (Exception e) {
                     e.printStackTrace();

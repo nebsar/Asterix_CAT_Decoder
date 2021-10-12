@@ -54,9 +54,9 @@ public class FinalFrameReader {
             int frameLength = getFrameLength();
             int availableBytes = is.available();
             //we need to add the 8 bytes from the header for the comparison
-            if (!isHeaderValid(frameLength, availableBytes + finalFrameHeader.length)) {
-                return null;
-            }
+//            if (!isHeaderValid(frameLength, availableBytes + finalFrameHeader.length)) {
+//                return null;
+//            }
             int finalFrameTime = getFrameTime();
 
             //read payload
