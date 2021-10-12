@@ -1,17 +1,19 @@
-package jlg.jade.asterix.cat021.item110;
+package jlg.jade.asterix.cat021;
 
+import jlg.jade.asterix.AsterixItemLength;
 import jlg.jade.asterix.DecodingNotImplemented;
+import jlg.jade.asterix.FixedLengthAsterixData;
 import jlg.jade.asterix.RepeatableAsterixData;
 
 /**
  *
  * @author beni.morgan
  */
-class Cat021Item110Subfield2 extends RepeatableAsterixData {
+public class Cat021Item250 extends RepeatableAsterixData {
 
     @Override
     protected int setRepeatableBlockSizeInBytes() {
-        return 15;
+        return AsterixItemLength.EIGHT_BYTES.getValue();
     }
 
     @Override
@@ -22,6 +24,7 @@ class Cat021Item110Subfield2 extends RepeatableAsterixData {
 
     @Override
     protected String setDisplayName() {
-        return "Cat021Item110Subfield2 - Trajectory Intent Data";
+        return "Cat021Item250 - Mode S MB Data";
     }
+
 }

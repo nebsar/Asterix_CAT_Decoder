@@ -27,13 +27,13 @@ public class Cat021Item145 extends FixedLengthAsterixData {
 
     @Override
     protected boolean validate() {
-        int minAllowedVal = -15;   // -15 ft
-        int maxAllowedVal = 1500;  // 1500 ft
+        int minAllowedVal = -15;   // -15 FL
+        int maxAllowedVal = 1500;  // 1500 FL
 
-        if (this.flightLevel >= minAllowedVal && this.flightLevel <= maxAllowedVal) {
+        if (getFlightLevelCorrected() >= minAllowedVal && getFlightLevelCorrected() <= maxAllowedVal) {
             return true;
         }
-        appendDebugMsg("Subfield is invalid (not between -240 (-1500ft) and 24000 (150000ft)");
+        appendDebugMsg("Subfield is invalid (not between -15 FL and 1500 FL)");
         appendNewLine();
         return false;
     }

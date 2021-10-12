@@ -7,7 +7,7 @@
 package jlg.jade.asterix.cat062.item290;
 
 import jlg.jade.asterix.AsterixItemLength;
-import jlg.jade.asterix.Cat062AsterixAgingDataField;
+import jlg.jade.asterix.Cat021_062AsterixAgingDataField;
 import jlg.jade.asterix.FspecAsterixData;
 
 /**
@@ -17,16 +17,16 @@ import jlg.jade.asterix.FspecAsterixData;
  * octets, followed by the indicated subfields.
  */
 public class Cat062Item290 extends FspecAsterixData {
-    private Cat062AsterixAgingDataField subfield1;
-    private Cat062AsterixAgingDataField subfield2;
-    private Cat062AsterixAgingDataField subfield3;
-    private Cat062AsterixAgingDataField subfield4;
+    private Cat021_062AsterixAgingDataField subfield1;
+    private Cat021_062AsterixAgingDataField subfield2;
+    private Cat021_062AsterixAgingDataField subfield3;
+    private Cat021_062AsterixAgingDataField subfield4;
     private Cat062Item290Subfield5 subfield5;
-    private Cat062AsterixAgingDataField subfield6;
-    private Cat062AsterixAgingDataField subfield7;
-    private Cat062AsterixAgingDataField subfield8;
-    private Cat062AsterixAgingDataField subfield9;
-    private Cat062AsterixAgingDataField subfield10;
+    private Cat021_062AsterixAgingDataField subfield6;
+    private Cat021_062AsterixAgingDataField subfield7;
+    private Cat021_062AsterixAgingDataField subfield8;
+    private Cat021_062AsterixAgingDataField subfield9;
+    private Cat021_062AsterixAgingDataField subfield10;
 
 
     @Override
@@ -37,7 +37,7 @@ public class Cat062Item290 extends FspecAsterixData {
     @Override
     protected int decodeFromByteArray(byte[] input, int offset, int length) {
         if(fspecDataAtIndex(Fspec.SUBFIELD_1)){
-            subfield1 = new Cat062AsterixAgingDataField();
+            subfield1 = new Cat021_062AsterixAgingDataField();
             offset = subfield1.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield1 - Track age");
@@ -45,7 +45,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_2)){
-            subfield2 = new Cat062AsterixAgingDataField();
+            subfield2 = new Cat021_062AsterixAgingDataField();
             offset = subfield2.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield2 - PSR age");
@@ -53,7 +53,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_3)){
-            subfield3 = new Cat062AsterixAgingDataField();
+            subfield3 = new Cat021_062AsterixAgingDataField();
             offset = subfield3.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield3 - SSR age");
@@ -61,7 +61,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_4)){
-            subfield4 = new Cat062AsterixAgingDataField();
+            subfield4 = new Cat021_062AsterixAgingDataField();
             offset = subfield4.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield4 - Mode S age");
@@ -79,7 +79,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_6)){
-            subfield6 = new Cat062AsterixAgingDataField();
+            subfield6 = new Cat021_062AsterixAgingDataField();
             offset = subfield6.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield6 - ADSB age");
@@ -88,7 +88,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_7)){
-            subfield7 = new Cat062AsterixAgingDataField();
+            subfield7 = new Cat021_062AsterixAgingDataField();
             offset = subfield7.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield7 - ADSB VDL age");
@@ -97,7 +97,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_8)) {
-            subfield8 = new Cat062AsterixAgingDataField();
+            subfield8 = new Cat021_062AsterixAgingDataField();
             offset = subfield8.decode(input, offset, length);
 
             appendDebugMsg("Item290Subfield8 - ADSB UAT age");
@@ -106,7 +106,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_9)){
-            subfield9 = new Cat062AsterixAgingDataField();
+            subfield9 = new Cat021_062AsterixAgingDataField();
             offset = subfield9.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield9 - Loop age");
@@ -115,7 +115,7 @@ public class Cat062Item290 extends FspecAsterixData {
         }
 
         if(fspecDataAtIndex(Fspec.SUBFIELD_10)){
-            subfield10 = new Cat062AsterixAgingDataField();
+            subfield10 = new Cat021_062AsterixAgingDataField();
             offset = subfield10.decode(input,offset,length);
 
             appendDebugMsg("Item290Subfield10 - Multilateration age");
@@ -126,19 +126,19 @@ public class Cat062Item290 extends FspecAsterixData {
         return offset;
     }
 
-    public Cat062AsterixAgingDataField getSubfield1() {
+    public Cat021_062AsterixAgingDataField getSubfield1() {
         return subfield1;
     }
 
-    public Cat062AsterixAgingDataField getSubfield2() {
+    public Cat021_062AsterixAgingDataField getSubfield2() {
         return subfield2;
     }
 
-    public Cat062AsterixAgingDataField getSubfield3() {
+    public Cat021_062AsterixAgingDataField getSubfield3() {
         return subfield3;
     }
 
-    public Cat062AsterixAgingDataField getSubfield4() {
+    public Cat021_062AsterixAgingDataField getSubfield4() {
         return subfield4;
     }
 
@@ -146,23 +146,23 @@ public class Cat062Item290 extends FspecAsterixData {
         return subfield5;
     }
 
-    public Cat062AsterixAgingDataField getSubfield6() {
+    public Cat021_062AsterixAgingDataField getSubfield6() {
         return subfield6;
     }
 
-    public Cat062AsterixAgingDataField getSubfield7() {
+    public Cat021_062AsterixAgingDataField getSubfield7() {
         return subfield7;
     }
 
-    public Cat062AsterixAgingDataField getSubfield8() {
+    public Cat021_062AsterixAgingDataField getSubfield8() {
         return subfield8;
     }
 
-    public Cat062AsterixAgingDataField getSubfield9() {
+    public Cat021_062AsterixAgingDataField getSubfield9() {
         return subfield9;
     }
 
-    public Cat062AsterixAgingDataField getSubfield10() {
+    public Cat021_062AsterixAgingDataField getSubfield10() {
         return subfield10;
     }
 

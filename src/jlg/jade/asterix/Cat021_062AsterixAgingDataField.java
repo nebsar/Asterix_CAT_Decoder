@@ -10,10 +10,10 @@ import jlg.jade.common.Constants;
 import jlg.jade.common.UnsignedNumericDecoder;
 
 /**
- * Generic class that implementes decoding behaviour for aging
- * fields of 1 octet (99% of Cat062 aging info is represente on 1 octet)
+ * Generic class that implements decoding behavior for aging
+ * fields of 1 octet (99% of Cat062 aging info is represented on 1 octet)
  */
-public class Cat062AsterixAgingDataField extends FixedLengthAsterixData {
+public class Cat021_062AsterixAgingDataField extends FixedLengthAsterixData {
     private int age;
 
     @Override

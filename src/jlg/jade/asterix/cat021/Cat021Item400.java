@@ -2,14 +2,15 @@ package jlg.jade.asterix.cat021;
 
 import jlg.jade.asterix.AsterixItemLength;
 import jlg.jade.asterix.FixedLengthAsterixData;
+import jlg.jade.common.UnsignedNumericDecoder;
 
 /**
  *
  * @author beni.morgan
  */
-public class Cat021Item020 extends FixedLengthAsterixData {
+public class Cat021Item400 extends FixedLengthAsterixData {
 
-    private int ECATValue;
+    private int receiverID;
 
     @Override
     protected int setSizeInBytes() {
@@ -18,15 +19,18 @@ public class Cat021Item020 extends FixedLengthAsterixData {
 
     @Override
     protected void decodeFromByteArray(byte[] input, int offset) {
+        this.receiverID = UnsignedNumericDecoder.decodeFromOneByte(input, offset);
 
-        this.ECATValue = Byte.toUnsignedInt(input[offset]);
+        appendItemDebugMsg("Receiver ID: ", this.receiverID);
+    }
 
-        appendItemDebugMsg("Emitter Category: ", this.ECATValue);
+    public int getReceiverID() {
+        return receiverID;
     }
 
     @Override
     protected String setDisplayName() {
-        return "Cat021Item020 - Emitter Category";
+        return "Cat021Item400 - Receiver ID";
     }
 
 }

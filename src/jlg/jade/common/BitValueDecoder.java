@@ -3,19 +3,20 @@
 * This code is the property of JLG Consulting. Please
 * check the license terms for this product to see under what
 * conditions you can use or modify this source code.
-*/
+ */
 package jlg.jade.common;
 
 import java.util.BitSet;
 
 public class BitValueDecoder {
+
     /**
      * Decode integer information from two bits, based on their arrangement.
      * Possible values are 0,1,2 and 3
      *
-     * @param bs            The bitset on which the method operates
+     * @param bs The bitset on which the method operates
      * @param startBitIndex The start bit index (first bit)
-     * @param endBitIndex   The end bit index (secomd bit)
+     * @param endBitIndex The end bit index (secomd bit)
      * @return The integer value of the two bits
      */
     public static int decodeFromTwoBits(BitSet bs, int startBitIndex, int endBitIndex) {
@@ -31,5 +32,32 @@ public class BitValueDecoder {
             return 2;
         }
         return 3;
+    }
+
+    public static int decodeFromThreeBits(BitSet bs, int startBitIndex, int endBitIndex) {
+
+        final boolean startBit = bs.get(startBitIndex);
+        final boolean middleBit = bs.get(startBitIndex + 1);
+        final boolean endBit = bs.get(endBitIndex);
+
+        if (!startBit && !endBit && !middleBit) {
+            return 0;
+        }
+        if (startBit && !middleBit && !endBit) {
+            return 1;
+        }
+        if (!startBit && middleBit && !endBit) {
+            return 2;
+        }
+        if (startBit && middleBit && !endBit) {
+            return 3;
+        }
+        if (!startBit && !middleBit && endBit) {
+            return 4;
+        }
+        if (startBit && !middleBit && endBit) {
+            return 5;
+        }
+        return 6;
     }
 }

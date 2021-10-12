@@ -14,9 +14,12 @@ import jlg.jade.common.Encodable;
 
 import java.util.AbstractMap;
 import jlg.jade.asterix.cat021.Cat021Item010;
+import jlg.jade.asterix.cat021.Cat021Record;
 
 public interface AsterixRecord extends Decodable, Encodable {
     int getCategory();
+    
+    Cat021Record getCat021Record();
 
     Cat062Record getCat062Record();
 
@@ -37,6 +40,8 @@ public interface AsterixRecord extends Decodable, Encodable {
     AbstractMap<String, Object> getAdditionalInfo();
     
     String getSacSicCode();
+    
+    void setCat021Record(Cat021Record record);
 
     void setCat004Record(Cat004Record record);
 

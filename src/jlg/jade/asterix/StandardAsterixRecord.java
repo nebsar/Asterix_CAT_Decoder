@@ -3,7 +3,7 @@
 * This code is the property of JLG Consulting. Please
 * check the license terms for this product to see under what
 * conditions you can use or modify this source code.
-*/
+ */
 package jlg.jade.asterix;
 
 import jlg.jade.asterix.cat004.Cat004Record;
@@ -18,13 +18,16 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
+import jlg.jade.asterix.cat021.Cat021Record;
 
 /**
  * Represents a single Asterix message of a given category.
  */
 public class StandardAsterixRecord extends DebugMessageSource implements AsterixRecord {
+
     private String sacSicCode;
     private final int category;
+    private Cat021Record cat021Record;
     private Cat062Record cat062Record;
     private Cat065Record cat065Record;
     private Cat004Record cat004Record;
@@ -32,17 +35,19 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     private Cat048Record cat048Record;
     private Cat150Record cat150Record;
     /**
-     * This field is used by 3rd party applications using this library. It helps to
-     * add more information on the ASTERIX record, that can simplify the logic in
-     * their own apps.
+     * This field is used by 3rd party applications using this library. It helps
+     * to add more information on the ASTERIX record, that can simplify the
+     * logic in their own apps.
      *
-     * @implNote No ASTERIX decoded field shall be inserted here. This will be empty. Only users can
-     * add info on this list after the decoding has been done.
+     * @implNote No ASTERIX decoded field shall be inserted here. This will be
+     * empty. Only users can add info on this list after the decoding has been
+     * done.
      */
     private AbstractMap<String, Object> additionalInfo;
 
     /**
      * Create an Asterix Record without any SP,RE fields
+     *
      * @param category
      */
     public StandardAsterixRecord(int category) {
@@ -51,6 +56,10 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
         switch (category) {
             case 4: {
                 this.cat004Record = new Cat004Record();
+                break;
+            }
+            case 21: {
+                this.cat021Record = new Cat021Record();
                 break;
             }
             case 34: {
@@ -79,8 +88,9 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     }
 
     /**
-     * Create an Asterix Record where the SP or RE fields need to have a custom decoding/encoding
-     * implementation
+     * Create an Asterix Record where the SP or RE fields need to have a custom
+     * decoding/encoding implementation
+     *
      * @param category
      */
     public StandardAsterixRecord(int category, ReservedFieldFactory customReservedFieldFactory) {
@@ -92,6 +102,9 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
             case 4: {
                 this.cat004Record = new Cat004Record(customReservedFieldFactory);
                 break;
+            }
+            case 21: {
+                this.cat021Record = new Cat021Record(customReservedFieldFactory);
             }
             case 34: {
                 this.cat034Record = new Cat034Record(customReservedFieldFactory);
@@ -120,12 +133,14 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     }
 
     /**
-     * Decodes the raw data to Asterix data block, containing zero or more Asterix
-     * records
+     * Decodes the raw data to Asterix data block, containing zero or more
+     * Asterix records
      *
-     * @param input       The raw data
-     * @param offset      The start offset in the raw data, at which reading should begin
-     * @param inputLength The amount of data that needs to be read from the input
+     * @param input The raw data
+     * @param offset The start offset in the raw data, at which reading should
+     * begin
+     * @param inputLength The amount of data that needs to be read from the
+     * input
      * @return The new offset in the raw data
      */
     @Override
@@ -134,6 +149,12 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
             case 4: {
                 int newOffset = this.cat004Record.decode(input, offset, inputLength);
                 this.sacSicCode = cat004Record.getItem010().getSac() + "/" + cat004Record
+                        .getItem010().getSic();
+                return newOffset;
+            }
+            case 21: {
+                int newOffset = this.cat021Record.decode(input, offset, inputLength);
+                this.sacSicCode = cat021Record.getItem010().getSac() + "/" + cat021Record
                         .getItem010().getSic();
                 return newOffset;
             }
@@ -172,12 +193,12 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     }
 
     /**
-     * Encodes the current Asterix record into a byte array, that can be then sent over the network
-     * or written to a file.
+     * Encodes the current Asterix record into a byte array, that can be then
+     * sent over the network or written to a file.
      *
-     * @return The new offset in the dest array, after the data has been encoded, or -1 if data
-     * can not be written because end of array has
-     * been reached
+     * @return The new offset in the dest array, after the data has been
+     * encoded, or -1 if data can not be written because end of array has been
+     * reached
      */
     @Override
     public byte[] encode() {
@@ -187,6 +208,16 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     @Override
     public int getCategory() {
         return category;
+    }
+
+    @Override
+    public Cat021Record getCat021Record() {
+        return cat021Record;
+    }
+
+    @Override
+    public void setCat021Record(Cat021Record cat062Record) {
+        this.cat021Record = cat062Record;
     }
 
     @Override
@@ -230,7 +261,9 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     }
 
     @Override
-    public Cat048Record getCat048Record() { return cat048Record; }
+    public Cat048Record getCat048Record() {
+        return cat048Record;
+    }
 
     @Override
     public void setCat048Record(Cat048Record cat048Record) {
@@ -248,7 +281,8 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     }
 
     /**
-     * Dictionary of key-value pairs for extending the information of the ASTERIX record
+     * Dictionary of key-value pairs for extending the information of the
+     * ASTERIX record
      */
     @Override
     public AbstractMap<String, Object> getAdditionalInfo() {
@@ -256,8 +290,8 @@ public class StandardAsterixRecord extends DebugMessageSource implements Asterix
     }
 
     /**
-     * The SAC/SIC code of the Asterix Record. Cat150 message will always have NA as a value, since
-     * this information is not present.
+     * The SAC/SIC code of the Asterix Record. Cat150 message will always have
+     * NA as a value, since this information is not present.
      *
      * @return
      */
